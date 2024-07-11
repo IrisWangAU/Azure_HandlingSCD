@@ -15,11 +15,21 @@ The source dataset contains information for Customers. The destination dataset i
 The steps are as follows:
 1. create extra column `HashKey` in source table `CustomerSource`
 ![step1](https://github.com/IrisWangAU/Azure_HandlingSCD/blob/main/STEP1_Create_HashKey.PNG)
+
+
 2. find rows with the `HashKey` that are not in the destination table `CustomerSink`
 ![step2](https://github.com/IrisWangAU/Azure_HandlingSCD/blob/main/STEP2_EntriesWithNewHKEY.PNG)
+
+
 3. outerjoin the data from step 2 with the destination table `CustomerSink` based on `CustomerID`
 ![step3](https://github.com/IrisWangAU/Azure_HandlingSCD/blob/main/STEP3_JoinTableForAllCols.PNG)
+
+
 4. update the `InsertedDate` and `ModifiedDate`: update the `ModifiedDate` and `InsertedDate` to current date when the entry is new; keep the `InsertedDate` and update the  `ModifiedDate` to current date for existing customers
 ![step4](https://github.com/IrisWangAU/Azure_HandlingSCD/blob/main/STEP4_FillDates.PNG)
+
+
 5. allow upserts option in the destination table for pipeline run
 ![step5](https://github.com/IrisWangAU/Azure_HandlingSCD/blob/main/STEP5_AllowUPserts.PNG)
+
+
